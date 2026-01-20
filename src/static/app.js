@@ -8,6 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const activityInput = document.getElementById("activity");
   const closeRegistrationModal = document.querySelector(".close-modal");
 
+  // Announcement banner elements
+  const announcementBanner = document.getElementById("announcement-banner");
+  const announcementTitle = document.getElementById("announcement-title");
+  const announcementMessage = document.getElementById("announcement-message");
+  const closeAnnouncement = document.querySelector(".close-announcement");
+
   // Search and filter elements
   const searchInput = document.getElementById("activity-search");
   const searchButton = document.getElementById("search-button");
@@ -38,7 +44,32 @@ document.addEventListener("DOMContentLoaded", () => {
   let allActivities = {};
   let currentFilter = "all";
   let searchQuery = "";
-  let currentDay = "";
+  letAnnouncement banner management
+  function showAnnouncement(title, message, duration = 0) {
+    announcementTitle.textContent = title;
+    announcementMessage.textContent = message;
+    announcementBanner.classList.remove("hidden");
+
+    // Adjust body padding to account for banner
+    document.body.style.paddingTop = announcementBanner.offsetHeight + 12 + "px";
+
+    // Auto-hide after specified duration (0 means no auto-hide)
+    if (duration > 0) {
+      setTimeout(() => {
+        hideAnnouncement();
+      }, duration);
+    }
+  }
+
+  function hideAnnouncement() {
+    announcementBanner.classList.add("hidden");
+    document.body.style.paddingTop = "12px";
+  }
+
+  // Close announcement button
+  closeAnnouncement.addEventListener("click", hideAnnouncement);
+
+  //  currentDay = "";
   let currentTimeRange = "";
 
   // Authentication state
